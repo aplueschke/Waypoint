@@ -253,6 +253,7 @@ export default class Waypoint extends Plugin {
 						children = children.filter(child => child instanceof TFolder || !folderNames.has(child.name));
 					}
 				}
+				children = children.filter(child => child.name != '_attachments_'); // remove attachments folder 
 				if (children.length > 0) {
 					const nextIndentLevel = (topLevel && !this.settings.showEnclosingNote) ? indentLevel : indentLevel + 1;
 					text += (text === "" ? "" : "\n") + (await Promise.all(children.map(child => this.getFileTreeRepresentation(rootNode, child, nextIndentLevel))))
